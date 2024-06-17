@@ -30,7 +30,7 @@ runCom="docker run --restart always -ti -d --name $nameDock \
 	-p $httpPort:80 \
 	-p $slkPort:9099 \
 	-h 1c-docker \
-	1c-server:$ver1c ./start1c.sh $portParam"
+	1c-server-slk-3033:$ver1c ./start1c.sh $portParam"
 
 echo $runCom
 /bin/bash -c "$runCom"
