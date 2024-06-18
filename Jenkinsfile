@@ -12,10 +12,10 @@ pipeline {
 			steps {
 				checkout scm
 				script {
-					def lastTag = sh(script: 'git describe --tags `git rev-list --tags --max-count=1`', returnStdout: true).trim().slice(0,12) 
+					def lastTag = sh(script: 'git describe --tags `git rev-list --tags --max-count=1`', returnStdout: true).trim()
 					echo "Last tag: ${lastTag}"
 
-					env.VERSION = alert ( lastTag.slice(0, 12) )
+					env.VERSION = lastTag.slice(0,12)
 					echo "Version: ${env.VERSION}"
 					}
 				}
