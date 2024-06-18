@@ -15,7 +15,7 @@ RUN locale-gen ru_RU.UTF-8
 ENV LANG='ru_RU.UTF-8' LANGUAGE='ru_RU:ru' LC_ALL='ru_RU.UTF-8'
 
 RUN wget http://ftp.ru.debian.org/debian/pool/main/e/enchant/libenchant1c2a_1.6.0-11.1+b1_amd64.deb
-RUN apt install -y ./libenchant1c2a_1.6.0-11.1+b1_amd64.deb
+#RUN apt install -y ./libenchant1c2a_1.6.0-11.1+b1_amd64.deb
 RUN fc-cache –fv
 
 RUN wget https://cloud.arbis29.ru/index.php/s/qQWMKYTe6aBadqp/download/licenceserver-3.0.33-11299.amd64.deb
