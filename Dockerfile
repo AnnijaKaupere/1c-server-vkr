@@ -9,7 +9,7 @@ RUN apt install -y tar wget libgtk-3-0 gstreamer1.0-plugins-good gstreamer1.0-pl
 
 RUN echo "deb http://ftp.ru.debian.org/debian sid main contrib non-free" >> /etc/apt/sources.list
 RUN apt update -y
-RUN apt install -y ttf-mscorefonts-installer
+#RUN apt install -y ttf-mscorefonts-installer
 
 RUN locale-gen ru_RU.UTF-8
 ENV LANG='ru_RU.UTF-8' LANGUAGE='ru_RU:ru' LC_ALL='ru_RU.UTF-8'
@@ -30,8 +30,8 @@ RUN chmod +x ./get1cdistr.sh
 RUN ./get1cdistr.sh
 RUN ./setup-1c.run --mode unattended --enable-components server,ws,server_admin,liberica_jre,client_thin_fib,ru
 
-RUN mkdir –p /home/usr1cv8/.fonts
-RUN cp -R /usr/share/fonts/truetype/msttcorefonts /home/usr1cv8/.fonts
+#RUN mkdir –p /home/usr1cv8/.fonts
+#RUN cp -R /usr/share/fonts/truetype/msttcorefonts /home/usr1cv8/.fonts
 
 COPY start1c.sh .
 
