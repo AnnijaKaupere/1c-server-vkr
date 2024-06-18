@@ -14,6 +14,7 @@ pipeline {
 				script {
 					def lastTag = sh(script: 'git describe --tags `git rev-list --tags --max-count=1`', returnStdout: true).trim()
 					echo "Last tag: ${lastTag}"
+					env.VERSION= lastTag
 
 					}
 				}
