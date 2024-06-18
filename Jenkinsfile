@@ -27,11 +27,11 @@ pipeline {
 					sh "chmod +x -R ./"
 					sh "echo ${ROOT_PASSWD} | sudo -S ./build-1c.sh ${env.VERSION}"
 				
-					sh "sudo docker push ./1c-server-slk-3033:${env.VERSION}"
+					sh "echo ${ROOT_PASSWD} | sudo docker push ./1c-server-slk-3033:${env.VERSION}"
 					
-					sh "sudo docker volume create --name pg-data"
-					sh "sudo docker volume create --name pg-run"
-					sh "sudo docker run --name postgresql --restart always -v pg-data:/var/lib/postgresql -v pg-run:/run/postgresql \
+					sh "echo ${ROOT_PASSWD} | sudo docker volume create --name pg-data"
+					sh "echo ${ROOT_PASSWD} | sudo docker volume create --name pg-run"
+					sh "echo ${ROOT_PASSWD} | sudo docker run --name postgresql --restart always -v pg-data:/var/lib/postgresql -v pg-run:/run/postgresql \
 --net host -d rsyuzyov/docker-postgresql-pro-1c"
 						
 					}
@@ -41,9 +41,9 @@ pipeline {
 		stage('Cleaning') {
 			steps {
 				script {
-					sh "sudo docker rmi -f annijakaupere/1c-server-slk-3033:${env.VERSION}"
+					sh "echo ${ROOT_PASSWD} | sudo docker rmi -f annijakaupere/1c-server-slk-3033:${env.VERSION}"
 
-					sh "sudo docker pull annijakaupere/1c-server-slk-3033:${env.VERSION}"
+					sh "echo ${ROOT_PASSWD} | sudo docker pull annijakaupere/1c-server-slk-3033:${env.VERSION}"
 					}
 				}
 				}
