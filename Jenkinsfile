@@ -19,7 +19,7 @@ pipeline {
 				}
 				}
 
-		stage('Build Docker image') {
+		stage('Build Docker images') {
 			steps {
 				script {
 					sh "echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
@@ -27,6 +27,12 @@ pipeline {
 					sh "annijakaupere/build-1c.sh ${env.VERSION}"
 				
 					sh "docker push annijakaupere/1c-server-slk-3033:${env.VERSION}"
+					
+					sh "docker volume create --name pg-data"
+					sh "docker volume create --name pg-run"
+					sh "docker run --name postgresql --restart always -v pg-data:/var/lib/postgresql -v pg-run:/run/postgresql \
+--net host -d rsyuzyov/docker-postgresql-pro-1c"
+						
 					}
 				}
 				}
