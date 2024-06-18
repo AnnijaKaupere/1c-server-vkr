@@ -1,10 +1,11 @@
 #!/bin/bash
 
+ver1c='8.3.22.2239'
 ver1cnew=$ver1c
 ver1="${ver1cnew//./_}"
 
 smbauth='ARBIS-NEW/pve-backup%Selowyk('
-distr='\\truenas\1c_techsupp\1c_enterprise82\'$ver1c'\server64_'$ver1'.tar.gz'
+distr='//truenas/1c_techsupp/1c_enterprise82\'$ver1c'\server64_'$ver1'.tar.gz'
 filename='server64_'$ver1'.tar.gz'
 
 
