@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	
 	environment {
-		DOCKER_HUB_TOKEN = credentials('dockerhub_token')
+		DOCKER_HUB_TOKEN = credentials('dockerhub-token')
 		DOCKER_HOST = 'unix://var/run/docker.sock'
 		}
 
