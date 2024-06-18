@@ -25,13 +25,13 @@ pipeline {
 					sh "echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
 					
 					sh "chmod +x -R ./"
-					sh "./build-1c.sh ${env.VERSION}"
+					sh "sudo ./build-1c.sh ${env.VERSION}"
 				
-					sh "docker push ./1c-server-slk-3033:${env.VERSION}"
+					sh "sudo docker push ./1c-server-slk-3033:${env.VERSION}"
 					
-					sh "docker volume create --name pg-data"
-					sh "docker volume create --name pg-run"
-					sh "docker run --name postgresql --restart always -v pg-data:/var/lib/postgresql -v pg-run:/run/postgresql \
+					sh "sudo docker volume create --name pg-data"
+					sh "sudo docker volume create --name pg-run"
+					sh "sudo docker run --name postgresql --restart always -v pg-data:/var/lib/postgresql -v pg-run:/run/postgresql \
 --net host -d rsyuzyov/docker-postgresql-pro-1c"
 						
 					}
@@ -41,9 +41,9 @@ pipeline {
 		stage('Cleaning') {
 			steps {
 				script {
-					sh "docker rmi -f annijakaupere/1c-server-slk-3033:${env.VERSION}"
+					sh "sudo docker rmi -f annijakaupere/1c-server-slk-3033:${env.VERSION}"
 
-					sh "docker pull annijakaupere/1c-server-slk-3033:${env.VERSION}"
+					sh "sudo docker pull annijakaupere/1c-server-slk-3033:${env.VERSION}"
 					}
 				}
 				}
