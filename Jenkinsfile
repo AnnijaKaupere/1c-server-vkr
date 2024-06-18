@@ -23,12 +23,12 @@ pipeline {
 		stage('Build Docker images') {
 			steps {
 				script {
-					sh "echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin docker.io"
+					sh "echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
 					
 					sh "chmod +x -R ./"
 					sh "echo ${ROOT_PASSWD} | sudo -S ./build-1c.sh ${env.VERSION}"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker tag 1c-server-slk-3033:${env.VERSION} annijakaupere/1c-server-slk-3033:${env.VERSION}"
-					sh "echo ${ROOT_PASSWD} | sudo -S docker push annijakaupere/1c-server-slk-3033"
+					sh "echo ${ROOT_PASSWD} | sudo -S docker push annijakaupere/1c-server-slk-3033:${env.VERSION}"
 					
 					sh "echo ${ROOT_PASSWD} | sudo -S docker volume create --name pg-data"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker volume create --name pg-run"
