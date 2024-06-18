@@ -24,9 +24,9 @@ pipeline {
 				script {
 					sh "echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
 					
-					sh "annijakaupere/build-1c.sh ${env.VERSION}"
+					sh "./build-1c.sh ${env.VERSION}"
 				
-					sh "docker push annijakaupere/1c-server-slk-3033:${env.VERSION}"
+					sh "docker push ./1c-server-slk-3033:${env.VERSION}"
 					
 					sh "docker volume create --name pg-data"
 					sh "docker volume create --name pg-run"
