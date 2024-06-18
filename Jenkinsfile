@@ -30,7 +30,8 @@ pipeline {
 					sh "echo ${ROOT_PASSWD} | sudo -S ./build-1c.sh ${env.VERSION}"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker tag 1c-server-slk-3033:${env.VERSION} annijakaupere/1c-server-slk-3033:${env.VERSION}"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker push annijakaupere/1c-server-slk-3033:${env.VERSION}"
-					
+					sh "echo sudo ./run-1c.sh ${env.VERSION} 15 1c-server"
+	
 					sh "echo ${ROOT_PASSWD} | sudo -S docker volume create --name pg-data"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker volume create --name pg-run"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker run --name postgresql --restart always -v pg-data:/var/lib/postgresql -v pg-run:/run/postgresql \
