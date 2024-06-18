@@ -4,6 +4,7 @@ pipeline {
 	environment {
 		DOCKER_HUB_TOKEN = credentials('dockerhub-token')
 		DOCKER_HOST = 'unix://var/run/docker.sock'
+		ROOT_PASSWD = 'root'
 		}
 
 	stages {
@@ -25,7 +26,7 @@ pipeline {
 					sh "echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
 					
 					sh "chmod +x -R ./"
-					sh "sudo ./build-1c.sh ${env.VERSION}"
+					sh "echo ${ROOT_PASSWD} | sudo -S ./build-1c.sh ${env.VERSION}"
 				
 					sh "sudo docker push ./1c-server-slk-3033:${env.VERSION}"
 					
