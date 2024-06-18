@@ -23,7 +23,8 @@ pipeline {
 		stage('Build Docker images') {
 			steps {
 				script {
-					sh "echo ${ROOT_PASSWD} |sudo -S | ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
+				
+					sh "echo ${ROOT_PASSWD} | sudo -S | echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
 					
 					sh "chmod +x -R ./"
 					sh "echo ${ROOT_PASSWD} | sudo -S ./build-1c.sh ${env.VERSION}"
