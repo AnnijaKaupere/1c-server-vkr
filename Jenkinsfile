@@ -16,6 +16,7 @@ pipeline {
 					echo "Last tag: ${lastTag}"
 
 					env.VERSION = lastTag.slice(0,12)
+					echo "Version: ${env.VERSION}"
 					}
 				}
 				}
