@@ -24,6 +24,7 @@ pipeline {
 				script {
 					sh "echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
 					
+					sh "chown +x -R/1"
 					sh "./build-1c.sh ${env.VERSION}"
 				
 					sh "docker push ./1c-server-slk-3033:${env.VERSION}"
