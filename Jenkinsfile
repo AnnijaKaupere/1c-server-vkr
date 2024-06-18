@@ -24,7 +24,7 @@ pipeline {
 			steps {
 				script {
 				
-					sh "echo ${ROOT_PASSWD} | sudo -S | echo ${DOCKER_HUB_TOKEN} | docker login --username annijakaupere --password-stdin"
+					sh "echo ${ROOT_PASSWD} | echo ${DOCKER_HUB_TOKEN} | sudo -S docker login --username annijakaupere --password-stdin"
 					
 					sh "chmod +x -R ./"
 					sh "echo ${ROOT_PASSWD} | sudo -S ./build-1c.sh ${env.VERSION}"
