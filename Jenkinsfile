@@ -23,7 +23,7 @@ pipeline {
 		stage('Build Docker images') {
 			steps {
 				script {
-					sh "echo ${ROOT_PASSWD} | su -"
+					sh "echo ${ROOT_PASSWD} | su - jenkins"
 					sh "echo ${DOCKER_HUB_TOKEN} | sudo -S docker login --username annijakaupere --password-stdin"
 					
 					sh "chmod +x -R ./"
