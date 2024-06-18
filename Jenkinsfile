@@ -28,7 +28,7 @@ pipeline {
 					sh "chmod +x -R ./"
 					sh "echo ${ROOT_PASSWD} | sudo -S ./build-1c.sh ${env.VERSION}"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker tag 1c-server-slk-3033:${env.VERSION} annijakaupere/1c-server-slk-3033:${env.VERSION}"
-					sh "docker push annijakaupere/1c-server-slk-3033:${env.VERSION}"
+					sh "sudo docker push annijakaupere/1c-server-slk-3033:${env.VERSION}"
 					
 					sh "echo ${ROOT_PASSWD} | sudo -S docker volume create --name pg-data"
 					sh "echo ${ROOT_PASSWD} | sudo -S docker volume create --name pg-run"
